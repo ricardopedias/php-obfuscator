@@ -1,8 +1,8 @@
-# 1. Light Obfuscator
+# 1. Php Obfuscator
 
-## 1.1. Sobre o Light Obfuscator
+## 1.1. Sobre o Php Obfuscator
 
-O Light Obfuscator é uma biblioteca bem testada que atualmente é executada em vários projetos reais. Surgiu da necessidade de ocultar o código, que possuía direitos autorais, e precisava ser executando no servidor de um cliente. Outra necessidade importante era que o código resultante da ofuscação fosse o mais rápido possível, custando o mínimo de recursos para o servidor executar.
+O Php Obfuscator é uma biblioteca bem testada que atualmente é executada em vários projetos reais. Surgiu da necessidade de ocultar o código, que possuía direitos autorais de um cliente, e precisava ser executando no servidor. Outra necessidade importante era que o código resultante da ofuscação fosse o mais rápido possível, custando o mínimo de recursos para o servidor executar.
 
 Originalmente a biblioteca foi desenvolvida para o PHP 5.2, evoluindo para o 5.6 e executando sem problemas em todo este período. Com o advento do PHP 7, a performance e a agilidade aumentou consideravelmente.
 

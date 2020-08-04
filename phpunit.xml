@@ -7,26 +7,11 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="true"
-         bootstrap="bootstrap.php">
+         bootstrap="vendor/autoload.php">
 
     <testsuites>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-        </testsuite>
-
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
-
-    <listeners>
-        <listener class="NunoMaduro\Collision\Adapters\Phpunit\Listener" />
-    </listeners>
-
-    <php>
-        <env name="APP_ENV" value="testing"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="QUEUE_DRIVER" value="sync"/>
-    </php>
 </phpunit>

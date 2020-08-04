@@ -8,23 +8,23 @@ Este guia leva em consideração que os usuários estejam utilizando terminal Un
 
 Para o correto funcionamento, o Light Obfuscator precisa que os seguintes requisitos básicos sejam atendidos, estando disponíveis no servidor:
 
-* PHP >= 7.1.0
+* PHP >= 7.4
 
 ## 2.3. Instalando o pacote
 
-O Light Obfuscator se encontra no [Packagist](https://packagist.org/), podendo ser alocado facilmente em qualquer projeto através do [Composer](http://getcomposer.org/).
+O Php Obfuscator se encontra no [Packagist](https://packagist.org/), podendo ser alocado facilmente em qualquer projeto através do [Composer](http://getcomposer.org/).
 
-Com o composer devidamente instalado no sistema operacional do desenvolvedor, execute o seguinte comando para instalar a última versão do Light Obfuscator:
+Com o composer devidamente instalado no sistema operacional do desenvolvedor, execute o seguinte comando para instalar a última versão do Php Obfuscator:
 
 ```bash
 $ cd /diretorio/meu/projeto/
-$ composer require plexi/light-obfuscator
+$ composer require ricardopedias/php-obfuscator
 ```
 
 Se preferir instalar uma versão específica, basta substituir pelo comando:
 
 ```bash
-$ composer require plexi/light-obfuscator:1.0.0
+$ composer require ricardopedias/php-obfuscator:1.0.0
 ```
 
 Os comandos acima vão adicionar automaticamente a chamada para o pacote no arquivo **composer.json** do projeto, excutando em seguida o processo de instalação.

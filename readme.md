@@ -1,17 +1,16 @@
-# Light Obfuscator
+# Php Obfuscator
 
-![PHP Version](https://img.shields.io/packagist/php-v/plexi/light-obfuscator.svg)
-![Packagist](https://img.shields.io/packagist/v/plexi/light-obfuscator.svg)
-![Downloads](https://img.shields.io/packagist/dm/plexi/light-obfuscator.svg)
+![PHP Version](https://img.shields.io/packagist/php-v/ricardopedias/php-obfuscator.svg)
+![Packagist](https://img.shields.io/packagist/v/ricardopedias/light-obfuscator.svg)
 
-*By [Ricardo Pereira Dias &copy;](https://www.ricardopdias.com.br)*
+*By [Ricardo Pereira Dias &copy;](https://www.ricardopedias.com.br)*
 
-Com o Light Obfuscator é possível ocultar o código PHP, mantendo sua execução normal. Muito útil para casos onde não é interessante compartilhar a regra de negócio ou a implementação efetuada em um determinado projeto.
+Com o Php Obfuscator é possível ocultar o código fonte, mantendo sua execução normal. Muito útil para casos onde não é interessante compartilhar a regra de negócio ou a implementação efetuada em um determinado projeto.
 
 
-![Ofuscação de Código PHP](docs/imgs/code-obfuscating.png?raw=true)
+![Ofuscação de Código PHP](docs/images/screenshot.png?raw=true)
 
-Sinta-se à vontade para conferir os [releases](https://github.com/ricardopedias/light-obfuscator/releases) e a [licença](license.md).
+Sinta-se à vontade para conferir os [releases](https://github.com/ricardopedias/php-obfuscator/releases) e a [licença](license.md).
 
 ### Características
 
@@ -25,7 +24,7 @@ Sinta-se à vontade para conferir os [releases](https://github.com/ricardopedias
 ## Sumário
 
 1. [Sobre](docs/01-About.md)
-    * [Sobre o Light Obfuscator](docs/01-About.md#11-sobre-o-light-obfuscator)
+    * [Sobre o Php Obfuscator](docs/01-About.md#11-sobre-o-php-obfuscator)
     * [Performance e Segurança](docs/01-About.md#12-performance-e-segurança)
     * [As versões da biblioteca](docs/01-About.md#13-as-versões-da-biblioteca)
 2. [Instalação](docs/02-Installation.md)
@@ -33,9 +32,8 @@ Sinta-se à vontade para conferir os [releases](https://github.com/ricardopedias
     * [Requisitos do servidor](docs/02-Installation.md#22-requisitos-do-servidor)
     * [Instalando o pacote](docs/02-Installation.md#23-instalando-o-pacote)
 3. [Como Usar](docs/03-Usage.md)
-    * [Ofuscando um único arquivo](docs/03-Usage.md#31-ofuscando-um-único-arquivo)
-    * [Ofuscando um diretório](docs/03-Usage.md#32-ofuscando-um-diretório)
+    * [Ofuscando um arquivo PHP](docs/03-Usage.md#31-ofuscando-um-arquivo-php)
 
 ## Creditos
 
-- [Ricardo Pereira Dias](https://www.ricardopdias.com.br)
+- [Ricardo Pereira Dias](https://www.ricardopedias.com.br)

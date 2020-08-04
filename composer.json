@@ -1,35 +1,41 @@
 {
-    "name": "plexi/light-obfuscator",
+    "name": "plexi/php-obfuscator",
     "description": "Ofuscador de código para projetos feitos em PHP",
     "keywords": ["php","obfuscating","obfuscator"],
     "license": "MIT",
     "authors": [
         {
             "name": "Ricardo Pereira",
-            "email": "rpdesignerfly@gmail.com"
+            "email": "contato@ricardopdias.com.br",
+            "role": "lead"
         }
     ],
-    "require": {
-        "php": ">=7.1"
+    "support": {
+        "docs": "https://github.com/ricardopedias/php-obfuscator",
+        "issues": "https://github.com/ricardopedias/php-obfuscator/issues",
+        "source": "https://github.com/ricardopedias/php-obfuscator"
     },
+    "require": {
+        "php": ">=7.4",
+        "league/flysystem": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "mockery/mockery": "^1.4"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "LightObfuscator\\": "src"
+            "PhpObfuscator\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LightObfuscator\\Tests\\": "tests/"
+            "PhpObfuscator\\Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
-    "require-dev": {
-        "illuminate/framework": "5.6.x"
+    "scripts":{
+        "tests":"vendor/bin/phpunit tests/"
     }
 }
