@@ -1,10 +1,10 @@
-# Php Obfuscator
+# PHP Obfuscator
 
 ![PHP Version](https://img.shields.io/packagist/php-v/ricardopedias/php-obfuscator.svg)
 
 *By [Ricardo Pereira Dias &copy;](https://www.ricardopedias.com.br)*
 
-Com o Php Obfuscator é possível ocultar o código fonte, mantendo sua execução normal. Muito útil para casos onde não é interessante compartilhar a regra de negócio ou a implementação efetuada em um determinado projeto.
+Com o PHP Obfuscator é possível ocultar o código fonte, mantendo sua execução normal. Muito útil para casos onde não é interessante compartilhar a regra de negócio ou a implementação efetuada em um determinado projeto.
 
 ![Ofuscação de Código PHP](docs/images/screenshot.png?raw=true)
 
