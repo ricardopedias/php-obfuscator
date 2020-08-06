@@ -1,0 +1,12 @@
+dist: bionic
+language: php
+php:
+  - '7.4'
+before_script:
+  - composer install
+script: 
+  - vendor/bin/phpunit tests
+  - vendor/bin/phpstan analyse src --level 8
+cache:
+  directories:
+    - vendor
