@@ -1,6 +1,5 @@
 /nbproject
-/node_modules
 /vendor
 /.idea
-/mix-manifest.json
 /.phpunit.result.cache
+/composer.lock
