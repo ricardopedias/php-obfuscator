@@ -14,7 +14,7 @@ class Obfuscate
      *
      * @var bool
      */
-    private $decodeErrors = true;
+    private bool $decodeErrors = true;
 
     /**
      * O código resultante do processo de ofuscação
@@ -22,7 +22,7 @@ class Obfuscate
      *
      * @var string
      */
-    private $obfuscated    = '';
+    private string $obfuscated    = '';
 
     /**
      * Objeto contendo informações de feedback sobre o que acontece
@@ -30,7 +30,7 @@ class Obfuscate
      *
      * @var \PhpObfuscator\Contracts\IFeedback
      */
-    private $feedback;
+    private IFeedback $feedback;
 
     /**
      * Objeto contendo informações de feedback sobre o que acontece
@@ -38,14 +38,14 @@ class Obfuscate
      *
      * @var \PhpObfuscator\Shuffler
      */
-    private $shuffler;
+    private Shuffler $shuffler;
 
     /**
      * Objeto contendo as funcionalidades de ofuscação.
      *
      * @var \PhpObfuscator\BlindMaker
      */
-    private $blindMaker;
+    private BlindMaker $blindMaker;
 
     public function __construct(?IFeedback $feedback = null)
     {
@@ -114,7 +114,7 @@ class Obfuscate
      * Verifica se o arquivo especificado já está ofuscado.
      *
      * @param  string $file Caminho completo até o arquivo
-     * @return true
+     * @return bool
      */
     public function isObfuscatedFile(string $file) : bool
     {
@@ -137,7 +137,7 @@ class Obfuscate
      * Ofusca o arquivo especificado e armazena-o na memória.
      *
      * @param  string $file
-     * @return bool
+     * @return Obfuscate
      */
     public function from(string $file) : Obfuscate
     {
@@ -147,11 +147,11 @@ class Obfuscate
         }
 
         // Remove os espaços e comentários do arquivo
-        $contents = $this->blindMaker()->removeWhiteSpaces($file);
+        $contents = (new Reliability())->readFileWithoutCommentsAndWhiteSpaces($file);
 
-        $this->obfuscated = $this->blindMaker()->obfuscateString($contents, $this->decodeErrors);
+        $this->obfuscated = $this->blindMaker()->obfuscateString($contents) ?? '';
 
-        if ($this->obfuscated === null) {
+        if ($this->obfuscated === '') {
             $this->feedback()->addRuntimeMessage("Mixed code found. File not obfuscated!");
             $this->obfuscated = $contents;
         }
@@ -163,7 +163,6 @@ class Obfuscate
      * Salva um arquivo com o código ofuscado no caminho especificado.
      *
      * @param  string $pathDestiny
-     * @param bool $self_contained
      * @return bool
      */
     public function generate(string $pathDestiny) : bool
@@ -175,10 +174,16 @@ class Obfuscate
             . $this->getObfuscated()
         );
 
-        $directory = Filesystem::dirname($pathDestiny);
-        $file = Filesystem::basename($pathDestiny);
+        $reliability = new Reliability();
+        $directory = $reliability->dirname($pathDestiny);
+        $file = $reliability->basename($pathDestiny);
 
-        $result = Filesystem::instance($directory)->write($file, $contents);
+        $filesystem = $reliability->mountDirectory($directory);
+        if ($filesystem === null) {
+            return false;
+        }
+
+        $result = $filesystem->write($file, $contents);
 
         return $result !== false;
     }
@@ -195,7 +200,7 @@ class Obfuscate
     {
         $plainCode = $this->blindMaker()->removePhpWrapper($unpackCode);
         if ($plainCode === null) {
-            return false;
+            return '';
         }
 
         return $this->blindMaker()->wrapUnpackFunctions($plainCode, $this->decodeErrors);

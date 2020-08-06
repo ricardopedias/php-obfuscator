@@ -11,14 +11,14 @@ class Feedback implements IFeedback
      * Armazena mensagens emitidas no momento de gerar o código ofuscado.
      * Não são erros, mas apenas avisos de algum evento ocorrido.
      *
-     * @var array
+     * @var array<string>
      */
     private $runtime = [];
 
     /**
      * Armazena as mensagens de erro disparadas pelo processo de ofuscação.
      *
-     * @var array
+     * @var array<string>
      */
     protected $errors = [];
 
@@ -35,7 +35,7 @@ class Feedback implements IFeedback
      * usuário ou se eles devem ocorrer silenciosamente sem ser reportados
      *
      * @param  boolean $enable
-     * @return \PhpObfuscator\ObfuscateFile
+     * @return IFeedback
      */
     public function enableThrowErrors($enable = true) : IFeedback
     {
@@ -48,7 +48,7 @@ class Feedback implements IFeedback
      * Não são erros, mas apenas avisos de algum evento ocorrido.
      *
      * @param string $message
-     * @return \PhpObfuscator\Feedback
+     * @return IFeedback
      */
     public function addRuntimeMessage(string $message) : IFeedback
     {
@@ -59,8 +59,7 @@ class Feedback implements IFeedback
     /**
      * Devolve as mensagens de tempo de execução.
      *
-     * @param string $message
-     * @return bool
+     * @return array<string>
      */
     public function getRuntimeMessages() : array
     {
@@ -70,7 +69,7 @@ class Feedback implements IFeedback
     /**
      * Devolve a última mensafgem de runtime ocorrida.
      *
-     * @return mixed|false
+     * @return string
      */
     public function getLastRuntimeMessage(): string
     {
@@ -82,7 +81,7 @@ class Feedback implements IFeedback
      * Adiciona uma mensagem na pilha de erros.
      *
      * @param string $message
-     * @return \PhpObfuscator\Feedback
+     * @return IFeedback
      */
     public function addErrorMessage(string $message) : IFeedback
     {
@@ -97,8 +96,7 @@ class Feedback implements IFeedback
     /**
      * Devolve as mensagens de erro ocorridas no processo.
      *
-     * @param string $message
-     * @return bool
+     * @return array<string>
      */
     public function getErrorMessages() : array
     {
@@ -108,7 +106,7 @@ class Feedback implements IFeedback
     /**
      * Devolve a última mensagem de erro ocorrida.
      *
-     * @return mixed|false
+     * @return string
      */
     public function getLastErrorMessage(): string
     {

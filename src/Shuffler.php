@@ -26,14 +26,14 @@ class Shuffler
      * - como 'packerOnePack' para empacotar código ou
      * - como 'packerOneUnpack' para desempacotá-lo.
      *
-     * @var array
+     * @var array<string>
      */
     protected $packers = [];
 
     /**
      * Lista com as funções usadas para parametrizar o desempacotamento.
      *
-     * @var array
+     * @var array<string>
      */
     protected $arguments = [];
 
@@ -42,7 +42,7 @@ class Shuffler
         $this->shuffle();
     }
 
-    private function shuffle()
+    private function shuffle(): void
     {
         $list = [
             'packerOne',
@@ -65,12 +65,22 @@ class Shuffler
         }
     }
 
-    public function mappedPackers()
+    /**
+     * Devolve uma lista com os nomes dos empacotadores
+     * 
+     * @return array<string>
+     */
+    public function mappedPackers(): array
     {
         return $this->packers;
     }
 
-    public function mappedArguments()
+    /**
+     * Devolve uma lista com os nomes dos argumentos
+     * 
+     * @return array<string>
+     */
+    public function mappedArguments(): array
     {
         return $this->arguments;
     }

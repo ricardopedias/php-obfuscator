@@ -5,10 +5,13 @@ namespace PhpObfuscator;
 
 class BlindMaker
 {
-    private $saltString;
+    private string $saltString;
+
+    private Shuffler $shuffler;
 
     public function __construct(?Shuffler $shuffler = null)
     {
+        $this->saltString = 'Sg'; // Deve conter duas letras!!
         $this->shuffler = $shuffler ?? new Shuffler();
     }
 
@@ -116,7 +119,7 @@ class BlindMaker
     }
 
     /**
-     * Empacota o codigo especificado.
+     * Empacota o código especificado.
      *
      * @param  string $data
      * @return string
@@ -124,7 +127,7 @@ class BlindMaker
      */
     public function packerTwoPack(string $data): string
     {
-        $encoded = base64_encode($data);
+        $encoded = (new Reliability())->encodeBase64($data);
 
         // Separa em dois pedaços
         $partOne = mb_substr($encoded, 0, 5, "utf-8");
@@ -263,19 +266,20 @@ class BlindMaker
      */
     public function extractMethod($methodName)
     {
-        $method = new \ReflectionMethod(__CLASS__, $methodName);
-        $start_line = $method->getStartLine(); // it's actually - 1, otherwise you wont get the function() block
-        $end_line = $method->getEndLine();
-        $length = $end_line - $start_line;
+        $method    = new \ReflectionMethod(__CLASS__, $methodName);
+        $startLine = (int)$method->getStartLine();
+        $endLine   = (int)$method->getEndLine();
+        $length    = $endLine - $startLine;
 
-        $source = file(__FILE__);
-        return implode("", array_slice($source, $start_line, $length));
+        $reliability = new Reliability();
+        $sourceArray = $reliability->readFileLines(__FILE__);
+
+        return implode("\n", array_slice($sourceArray, $startLine, $length));
     }
 
     /**
      * Gera uma string contendo todas as funções de desempacotamento.
      *
-     * @param  boolean $use_php_wrapper
      * @return string
      */
     public function getRevertFileContents()
@@ -342,14 +346,20 @@ class BlindMaker
      * Verifica se o arquivo especificado já está ofuscado.
      *
      * @param  string $obfuscatedFile
-     * @return true
+     * @return bool
      */
     public function isObfuscatedFile(string $obfuscatedFile) : bool
     {
-        $directory = dirname($obfuscatedFile);
-        $fs = Filesystem::instance($directory);
+        $reliability = new Reliability();
+        $directory   = $reliability->dirname($obfuscatedFile);
+        $file        = $reliability->basename($obfuscatedFile);
+        $filesystem  = $reliability->mountDirectory($directory);
 
-        $contents = $fs->read($fs->basename($obfuscatedFile));
+        if ($filesystem === null) {
+            return false;
+        }
+
+        $contents = $filesystem->read($file);
         if ($contents === false) {
             // não foi possível ler o arquivo
             return false;
@@ -366,17 +376,8 @@ class BlindMaker
         return false;
     }
 
-    public function removeWhiteSpaces(string $string): string
-    {
-        return php_strip_whitespace($string);
-    }
-
     private function salt(): string
     {
-        if ($this->saltString === null) {
-            $this->saltString = 'Sg'; // Deve conter duas letras!!
-        }
-        
         return $this->saltString;
     }
 }

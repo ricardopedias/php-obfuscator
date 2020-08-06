@@ -10,7 +10,7 @@ interface IFeedback
      * usuário ou se eles devem ocorrer silenciosamente sem ser reportados
      *
      * @param  boolean $enable
-     * @return \PhpObfuscator\ObfuscateFile
+     * @return IFeedback
      */
     public function enableThrowErrors($enable = true) : IFeedback;
 
@@ -19,22 +19,21 @@ interface IFeedback
      * Não são erros, mas apenas avisos de algum evento ocorrido.
      *
      * @param string $message
-     * @return \PhpObfuscator\Feedback
+     * @return IFeedback
      */
     public function addRuntimeMessage(string $message) : IFeedback;
 
     /**
      * Devolve as mensagens de tempo de execução.
      *
-     * @param string $message
-     * @return bool
+     * @return array<string>
      */
     public function getRuntimeMessages() : array;
 
     /**
      * Devolve a última mensafgem de runtime ocorrida.
      *
-     * @return mixed|false
+     * @return string
      */
     public function getLastRuntimeMessage(): string;
 
@@ -49,15 +48,14 @@ interface IFeedback
     /**
      * Devolve as mensagens de erro ocorridas no processo.
      *
-     * @param string $message
-     * @return bool
+     * @return array<string>
      */
     public function getErrorMessages() : array;
 
     /**
      * Devolve a última mensagem de erro ocorrida.
      *
-     * @return mixed|false
+     * @return string
      */
     public function getLastErrorMessage(): string;
 }
