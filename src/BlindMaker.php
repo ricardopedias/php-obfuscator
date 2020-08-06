@@ -286,7 +286,7 @@ class BlindMaker
     {
         $lines = [];
 
-        $sp = "    ";
+        $tabulation = "    ";
 
         // DESEMPACOTADORES RANDÔMICOS:
         // São várias funções 'falsas' com nomes ramdômicos que,
@@ -304,9 +304,9 @@ class BlindMaker
             $baseName = str_replace('packer', 'base', $methodName);
 
             $lines[] = "if (function_exists('{$packerName}') == false){\n"
-                     . $sp . "function {$packerName}(\$data, \$revert = false){\n"
-                     . $sp .$sp . "return {$baseName}(\$data);\n"
-                     . $sp . "}\n"
+                     . $tabulation . "function {$packerName}(\$data, \$revert = false){\n"
+                     . $tabulation .$tabulation . "return {$baseName}(\$data);\n"
+                     . $tabulation . "}\n"
                      . "}";
         }
 
@@ -319,7 +319,7 @@ class BlindMaker
             // para nomear na função de desempacotamento como 'baseOne'
             $baseName = str_replace('packer', 'base', $methodName);
             $lines[] = "if (function_exists('{$baseName}') == false){\n"
-                     . $sp . "function {$baseName}(\$data)\n"
+                     . $tabulation . "function {$baseName}(\$data)\n"
                      // Extrai o conteúdo do método 'packer???Unpack'
                      // para gerar a função 'base???'
                      . $this->extractMethod($methodName . 'Unpack')
@@ -335,7 +335,7 @@ class BlindMaker
         $mappedArgumenters = $this->shuffler()->mappedArguments();
         foreach($mappedArgumenters as $methodName) {
             $lines[] = "if (function_exists('{$methodName}') === false){\n"
-                     . $sp . "function {$methodName}() { return TRUE; }\n"
+                     . $tabulation . "function {$methodName}() { return TRUE; }\n"
                      . "}";
         }
 

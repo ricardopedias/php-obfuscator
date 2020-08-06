@@ -46,7 +46,7 @@ class Reliability
     public function basename(string $filename): string
     {
         $filename = $this->removeInvalidWhiteSpaces($filename);
-        return Util::pathinfo($filename)['basename'];
+        return $this->pathinfo($filename)['basename'];
     }
 
     /**
@@ -59,7 +59,7 @@ class Reliability
     public function filename(string $filename): string
     {
         $filename = $this->removeInvalidWhiteSpaces($filename);
-        return Util::pathinfo($filename)['filename'];
+        return $this->pathinfo($filename)['filename'];
     }
 
     /**
@@ -72,7 +72,7 @@ class Reliability
     public function dirname(string $filenameOrDir): string
     {
         $filenameOrDir = $this->removeInvalidWhiteSpaces($filenameOrDir);
-        return Util::pathinfo($filenameOrDir)['dirname'];
+        return $this->pathinfo($filenameOrDir)['dirname'];
     }
 
     /**
@@ -83,7 +83,7 @@ class Reliability
      */
     public function isDirectory(string $path): bool
     {
-        $info = Util::pathinfo($path);
+        $info = $this->pathinfo($path);
         return $this->pathExists($path) && !isset($info['extension']);
     }
 
@@ -95,7 +95,7 @@ class Reliability
      */
     public function isFile(string $filename): bool
     {
-        $info = Util::pathinfo($filename);
+        $info = $this->pathinfo($filename);
         return $this->pathExists($filename) && isset($info['extension']);
     }
 
@@ -156,6 +156,14 @@ class Reliability
         return new Filesystem($adapter);
     }
     
+    /**
+     * @return array<string>
+     */
+    private function pathinfo(string $path): array
+    {
+        return Util::pathinfo($path);
+    }
+
     /**
      * Verifica se o caminho especificado existe.
      * Pode ser um diretório ou um arquivo
