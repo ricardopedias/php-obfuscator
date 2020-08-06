@@ -28,6 +28,28 @@ class BlindMakerTest extends TestCase
         });
     }
 
+    /** @test */
+    public function extractMethod()
+    {
+        $blindy = new BlindMaker();
+        $content = $blindy->extractMethod('packerOnePack');
+        $lines = explode("\n", $content);
+        $lines = array_map(function($item){ return trim($item);}, $lines);
+        
+        $this->assertEquals([
+            '{',
+            '$encoded = base64_encode($data);',
+            '',
+            '// Separa em dois pedaços',
+            '$partOne = mb_substr($encoded, 0, 10, "utf-8");',
+            '$partTwo = mb_substr($encoded, 10, null, "utf-8");',
+            '',
+            '// Insere \'Sg\' para invalidar o base64',
+            'return $partOne . $this->salt() . $partTwo;',
+            '}'
+        ], $lines);
+    }
+
     //
     // Compressão e descompressão
     //

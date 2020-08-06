@@ -6,8 +6,8 @@ namespace PhpObfuscator\Tests;
 
 use PhpObfuscator\Obfuscate;
 use Mockery;
-use PhpObfuscator\Filesystem;
 use League\Flysystem\Adapter;
+use League\Flysystem\Filesystem;
 
 trait HasTestTools
 {
