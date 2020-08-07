@@ -5,8 +5,8 @@
 Para ofuscar um único arquivo PHP, usa-se a classe Obfuscate,
 fornecendo o caminho completo até o arquivo PHP a ser processado e também a localização do resultado ofuscado.
 
-* O método **obfuscateFile()** marca o arquivo para ofuscação;
-* O método **save()** ofusca efetivamente, salvando na localização especificada.
+* O método **from()** marca o arquivo para ofuscação;
+* O método **generate()** ofusca efetivamente, salvando na localização especificada.
 
 ```php
 $ob = new PhpObfuscator\Obfuscate();
